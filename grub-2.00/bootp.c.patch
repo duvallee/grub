@@ -1,0 +1,11 @@
+--- ./grub-core/net/bootp.c	2017-03-07 14:04:43.610973911 +0900
++++ ./grub-core/net/bootp_new.c	2017-03-07 14:07:32.027979006 +0900
+@@ -252,7 +252,7 @@
+ 	}
+     }
+   if (size > OFFSET_OF (vendor, bp))
+-    parse_dhcp_vendor (name, &bp->vendor, size - OFFSET_OF (vendor, bp), &mask);
++    parse_dhcp_vendor (name, (void*) &bp->vendor, size - OFFSET_OF (vendor, bp), &mask);
+   grub_net_add_ipv4_local (inter, mask);
+   
+   inter->dhcp_ack = grub_malloc (size);
